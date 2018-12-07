@@ -1,0 +1,193 @@
+TestNG
+------------------
+Eclipse -> help -> eclipse market place -> search testNG ->install - click next
+
+eclipse -> help ->install software
+
+create class -> creatre new -> other -> testNG
+---------------------------
+
+TestNG program will not have main method. 
+all method should annotated with @
+
+advantage
+1:support parallel testing
+2.HTML report generation
+3.test cases can grouped & prioritized
+4.uses annotation for execution methods
+5.Supports parameterization :
+	- using parameter-> one value curres.to parameter @parameter/ <parameter>
+	- using Dataprovider->  can send any number of data
+
+Steps to write tese cases
+1.write the business logic and insert TestNG annotation
+2.add info about ur test in a testing.xml or bulid.xml(eg. class name, method name, grp name)
+3.tun TestNG
+
+annotation "@"
+---------------
+- write just before a method
+- used to control next method
+
+eg:
+@Test - is a part of method
+@BeforeMethod - run before any test method in the class
+@AfterMethod - run after any test method in the class
+@BeforeClass - run before first test method in the class 
+@AfterClass- run after all the test method in the class
+@BeforeGroup - before every group
+@AfterGroup - after every group
+@BeforeTest - same as @BeforeClass
+@AfterTest - same as @AfterClass
+@BeforeSuit
+@AfterSuit
+
+Annotation '@'
+---------------
+eg: 
+@Test
+public void method1(){
+System.out.println(first method);
+}
+-----------------------------------------------------------------
+
+testNG.xml structure
+--------------
+<suite name="TestNG">
+	<test name="TestAnnotation">
+		<classes>
+			<class name="testNG.TestAnnotations" />				
+		</classes>
+	</test>
+</suite>
+
+
+Prioritzation - @Test(Priority=2)
+------------------
+- Annotated methods can be prioritized
+- Priority can be assigend as parameter while calling test cases
+- If not defined priority,test method will be executed in alphabetical order
+
+@Test(Priority=2)
+public void method1(){
+System.out.println(first method);
+}
+
+@Test(Priority=1)
+public void method2(){
+System.out.println(Sec method);
+}
+**Method 2 will run first then method2.
+
+
+Disabling testcases   @Test(enabled=false)
+----------------------------
+
+method dependency  @Test(alwaysRun=true)
+-----------------------------
+run a particluar tc irrespective of the fail/pass condition of depending method
+
+@Test
+public void first(){
+System.out.println(Sec method);
+}
+
+@Test(dependsOnMethod ={"final"}, alwaysRun =true)
+public void Sec(){
+System.out.println(Sec method);
+}
+
+@Test(Priority=1)
+public void final(){
+System.out.println(Sec method);
+}
+
+Grouping  @Test(groups={"A"})
+-----------------------------
+can be done by  from xml or from code
+
+from .xml
+<suite name="TestNG">
+	<test name="Test Grouping">
+		<groups>
+			<run>
+				<include name="A" />   // run all the included  groups
+				<include name="B" />				
+			</run>
+		</groups>
+		<classes>
+			<class name="testNG.Grouping" />// can include more classes			
+		</classes>
+	</test>
+</suite>
+
+
+Assertion - 
+-----------------------------
+to compare actual result with expected result
+Assert.asserEquals(str1, str2);
+Assert.asserTrue(methodCall()); - check if call to method returns true.
+
+if assert fails next line wont execute
+
+Parallel testing
+-----------------------------
+-Diff test, diff browser, etc...
+
+from .xml
+<suite name="TestNG" parallel="tests"> //classes, methods, instances
+	<test name="Test Grouping">		
+		<classes>
+			<class name="testNG.Grouping" />// can include more classes			
+		</classes>
+	</test>
+	<test name="Test Assertion">		
+		<classes>
+			<class name="testNG.Assertion" />// can include more classes			
+		</classes>
+	</test>
+</suite>
+
+Report generation
+-----------------------------
+pen from testoutput from proj explorer
+
+****************************************************************************************************************************************************************************
+
+
+	
+	
+   
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
